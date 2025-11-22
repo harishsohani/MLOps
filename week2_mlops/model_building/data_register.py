@@ -13,7 +13,7 @@ my_token = os.getenv("HF_TOKEN")
 # ------------------------------
 # Validate token
 # ------------------------------
-if not token:
+if not my_token:
     raise ValueError("HF_TOKEN is not set in environment variables!")
 
 # Initialize API client

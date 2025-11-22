@@ -105,24 +105,24 @@ print(classification_report(ytest, y_pred_test))
 joblib.dump(best_model, "best_churn_model.joblib")
 
 # Upload to Hugging Face
-repo_id = "harishsohani/churn-model"
-repo_type = "model"
+my_repo_id = "harishsohani/Bank-Customer-Churn"
+my_repo_type = "model"
 
 api = HfApi(token=os.getenv("HF_TOKEN"))
 
 # Step 1: Check if the space exists
 try:
-    api.repo_info(repo_id=repo_id, repo_type=repo_type)
-    print(f"Model Space '{repo_id}' already exists. Using it.")
+    api.repo_info(repo_id=my_repo_id, repo_type=my_repo_type)
+    print(f"Model Space '{my_repo_id}' already exists. Using it.")
 except RepositoryNotFoundError:
-    print(f"Model Space '{repo_id}' not found. Creating new space...")
+    print(f"Model Space '{my_repo_id}' not found. Creating new space...")
     create_repo(repo_id=repo_id, repo_type=repo_type, private=False)
-    print(f"Model Space '{repo_id}' created.")
+    print(f"Model Space '{my_repo_id}' created.")
 
-# create_repo("churn-model", repo_type="model", private=False)
+#create_repo("churn-model", repo_type="model", private=False)
 api.upload_file(
     path_or_fileobj="best_churn_model.joblib",
     path_in_repo="best_churn_model.joblib",
-    repo_id=repo_id,
-    repo_type=repo_type,
+    repo_id=my_repo_id,
+    repo_type=my_repo_type,
 )

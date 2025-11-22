@@ -27,7 +27,7 @@ try:
     print(f"Dataset '{my_repo_id}' already exists. Using it.")
 except RepositoryNotFoundError:
     print(f"Dataset '{my_repo_id}' not found. Creating new space...")
-    create_repo(repo_id=my_repo_id, repo_type=my_repo_type, exist_ok=True, private=False)
+    api.create_repo(repo_id=my_repo_id, repo_type=my_repo_type, exist_ok=True, private=False)
     print(f"Dataset '{my_repo_id}' created.")
 
 # ------------------------------

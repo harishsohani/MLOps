@@ -4,7 +4,7 @@ from huggingface_hub import hf_hub_download, login
 import joblib
 import os
 
-login(token=os.getenv("HF_TOKEN"))
+login(token=os.getenv("MLOps_23Nov25"))
 
 
 # Download the model from the Model Hub

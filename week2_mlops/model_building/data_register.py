@@ -1,7 +1,9 @@
 
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
-from huggingface_hub import HfApi, create_repo
+from huggingface_hub import HfApi, create_repo, login
 import os
+
+login(token=os.getenv("HF_TOKEN"))
 
 # ------------------------------
 # Configuration
@@ -16,6 +18,7 @@ my_token = os.getenv("HF_TOKEN")
 if not my_token:
     raise ValueError("HF_TOKEN is not set in environment variables!")
 
+
 # Initialize API client
 #api = HfApi(token=os.getenv("HF_TOKEN"))
 # Init client
@@ -27,20 +30,13 @@ try:
     print(f"Dataset '{my_repo_id}' already exists. Using it.")
 except RepositoryNotFoundError:
     print(f"Dataset '{my_repo_id}' not found. Creating new space...")
-    api.create_repo(repo_id=my_repo_id, repo_type=my_repo_type, exist_ok=True, private=False)
+    api.create_repo(repo_id=my_repo_id, repo_type=my_repo_type, private=False)
     print(f"Dataset '{my_repo_id}' created.")
 
-# ------------------------------
-# Step 2: Upload data folder
-# ------------------------------
-folder_to_upload = os.path.join("week2_mlops", "data")
-
-if not os.path.exists(folder_to_upload):
-    raise FileNotFoundError(f"Data folder not found: {folder_to_upload}")
-
+# Upload data
 api.upload_folder(
+    folder_path="week2_mlops/data",
     repo_id=my_repo_id,
     repo_type=my_repo_type,
-    folder_path=folder_to_upload,
 )
 print("Upload completed!")

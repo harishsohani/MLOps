@@ -8,7 +8,10 @@ import os
 
 
 # Download the model from the Model Hub
-model_path = hf_hub_download(repo_id=harishsohani/Bank-Customer-Churn, filename="best_churn_model_v1.joblib")
+model_path = hf_hub_download (
+    repo_id="harishsohani/Bank-Customer-Churn",
+    filename="best_churn_model_v1.joblib"
+    )
 
 # Load the model
 model = joblib.load(model_path)

@@ -118,7 +118,7 @@ try:
     print(f"Model Space '{my_repo_id}' already exists. Using it.")
 except RepositoryNotFoundError:
     print(f"Model Space '{my_repo_id}' not found. Creating new space...")
-    create_repo(repo_id=repo_id, repo_type=repo_type, private=False)
+    create_repo(repo_id=my_repo_id, repo_type=my_repo_type, private=False)
     print(f"Model Space '{my_repo_id}' created.")
 
 #create_repo("churn-model", repo_type="model", private=False)
